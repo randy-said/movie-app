@@ -98,7 +98,6 @@
       //Add second Movie
       function featuredMovie1(movie){
           let html = '';    
-          // for(let i = 0; i < allNewMovies.length; i++){
           html +=   `  <div class="h-96 grid place-items-center">
       
           <div class="bg-white rounded-md bg-gray-800 shadow-lg">
@@ -130,7 +129,7 @@
       }
       featuredMovie1(await secondMovie)
 
-      //Add third movie
+    //   //Add third movie
       function featuredMovie2(movie){
         let html = '';    
         // for(let i = 0; i < allNewMovies.length; i++){
@@ -174,11 +173,9 @@
     let html = '';    
     for(let i = 0; i < movieList.length; i++){
 
-
-
       html += `<div class="flex flex-col h-full border border-gray-200 xl:h-full xl:w-4/5 rounded-lg xl:flex-col xl:items-center w-full shadow md:flex-row dark:border-gray-700 xl:ml-[15px] dark:bg-gray-800">
 
-      <img class="object-cover rounded-t-lg md:w-80 md:h-full w-full h-1/2 xl:h-2/3 md:rounded-none md:rounded-l-lg" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1LRLLWGvs5sZdTzuMqLEahb88Pc.jpg" alt="">
+      <img class="object-cover rounded-t-lg md:w-80 md:h-full w-full h-1/2 xl:h-2/3 md:rounded-none md:rounded-l-lg" src="${movieList[i].image}" alt="">
 
         <div class = "flex w-full justify-center items-center">
 
@@ -207,15 +204,26 @@
 
     </div>    
   </div>`
-
-      } 
-    $('.favorites').prepend(html);
+    } 
+    $('.favorites').append(html);
     }
      getAllMovies();
 
 //Movie Object that goes into add movies function(first add btn)
-$(document).on(`click`, `#add-btn`, async (event) => {
-  let movieObject = {   
+$(document).on(`click`, `#add-btn`, async (e) => {
+  e.preventDefault();
+  const addMovieValue = $('#title').val();
+   console.log(addMovieValue);
+   const addMovieName= await movieDbApi(addMovieValue);
+  //  <img src="https://image.tmdb.org/t/p/w500${foundMovies.results[0].poster_path}"
+  //                 alt="pic"
+  //  let imagePoster = addMovieName.results[0].poster_path;
+  //  console.log(addMovieName.results[0].poster_path);
+
+
+
+  let movieObject = {  
+    image: imagePoster, 
     title: $('#title').val(),
     year:  $('#year').val(),
     rating: $('#rating').val(),
@@ -223,8 +231,9 @@ $(document).on(`click`, `#add-btn`, async (event) => {
   }
 //add to database
   await addMovie(movieObject);
-  location.reload();
+  // location.reload();
 });
+
 //All Cancel Buttons
 $(document).on(`click`, `.cancel-btn`, (event) => {
   location.reload();
@@ -337,9 +346,9 @@ $('#search-btn').on('click', async function(e){
  e.preventDefault();
  $('#hidden-div').toggleClass('hidden');
  const searchedMovie = $('#search-input').val();
- console.log(searchedMovie);
+//  console.log(searchedMovie);
  const foundMovies = await movieDbApi(searchedMovie);
- console.log(foundMovies);
+//  console.log(foundMovies);
 
  let theDate = foundMovies.results[0].release_date.slice(0, 4);
  let actors = foundMovies.results[0].overview.slice(0, 60);
@@ -355,6 +364,7 @@ let html = '';
                 <div class="md:flex-none flex justify-center items-align">
                  <img src="https://image.tmdb.org/t/p/w500${foundMovies.results[0].poster_path}"
                   alt="pic"
+                  id="s-m-poster"
                   class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
                 />           
                 </div>
@@ -384,15 +394,19 @@ let html = '';
      $('#hidden-div').prepend(html);
 });
 
+
 // Second add button from API search
 $(document).on('click', '.add-btn', async function(e){
   e.preventDefault();
- let title = $('#s-m-title').text();
- let year = $('#s-m-date').text();
- let rating = $('#s-m-rating').text().split(": ")[1];
- let actors = $('#s-m-actors').text();
+  let image = $("#s-m-poster").attr("src");
+  console.log(image)
+  let title = $('#s-m-title').text();
+  let year = $('#s-m-date').text();
+  let rating = $('#s-m-rating').text().split(": ")[1];
+  let actors = $('#s-m-actors').text();
 
   const searchedMovie = {
+    image: image,
     title: title,
     year: year,
     rating: rating,
