@@ -69,7 +69,7 @@
             <div class="bg-white rounded-md bg-gray-800 shadow-lg">
               <div class="md:flex px-4 leading-none max-w-xl">
                 <div class="md:flex-none flex justify-center items-align">
-                 <img src="https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500"
+                 <img src="${movie.image}"
                   alt="pic"
                   class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
                 />           
@@ -104,8 +104,7 @@
             <div class="md:flex px-4 leading-none max-w-xl">
               <div class="md:flex-none flex justify-center items-align">
                <img
-                src="https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500"
-                alt="pic"
+               src="${movie.image}"
                 class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
               />           
               </div>
@@ -139,8 +138,7 @@
           <div class="md:flex px-4 leading-none max-w-xl">
             <div class="md:flex-none flex justify-center items-align">
              <img
-              src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1LRLLWGvs5sZdTzuMqLEahb88Pc.jpg"
-              alt="pic"
+             src="${movie.image}"
               class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
             />           
             </div>
@@ -156,9 +154,7 @@
               </p>
             </div>
           </div>
-          
-        
-          </div>          
+        </div>          
         </div>
       </div>`
 
@@ -213,14 +209,8 @@
 $(document).on(`click`, `#add-btn`, async (e) => {
   e.preventDefault();
   const addMovieValue = $('#title').val();
-   console.log(addMovieValue);
-   const addMovieName= await movieDbApi(addMovieValue);
-  //  <img src="https://image.tmdb.org/t/p/w500${foundMovies.results[0].poster_path}"
-  //                 alt="pic"
-  //  let imagePoster = addMovieName.results[0].poster_path;
-  //  console.log(addMovieName.results[0].poster_path);
-
-
+   const addMovieName = await movieDbApi(addMovieValue); 
+  let imagePoster = `https://image.tmdb.org/t/p/w500${addMovieName.results[0].poster_path}` 
 
   let movieObject = {  
     image: imagePoster, 
@@ -231,7 +221,7 @@ $(document).on(`click`, `#add-btn`, async (e) => {
   }
 //add to database
   await addMovie(movieObject);
-  // location.reload();
+  location.reload();
 });
 
 //All Cancel Buttons
