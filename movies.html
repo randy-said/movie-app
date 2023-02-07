@@ -39,7 +39,7 @@
 
 
 <body class="bg-newblack flex items-center justify-center h-screen">
-
+    
  <!---------------Add Movie Modal--------------------->
  <div id="pop-up" class="modal z-40 hidden fixed w-full h-full top-0 left-0 flex items-center justify-center">
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
@@ -87,6 +87,7 @@
 
   <!------------Main Container-->
 <div class = "container-movies flex h-full w-full flex-col">
+    
 
 <!------------------------Mobile Dropdown--------------------------->
                 <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -97,7 +98,7 @@
                 </button>
 
                 <!------------------------Dashboard--------------------------------->
-                <aside id="separator-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                <aside id="separator-sidebar" class="fixed top-0 left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" style = "z-index:9999" aria-label="Sidebar">
                     <div class="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800">
                     <ul class="space-y-2">
                         <li>
@@ -149,9 +150,12 @@
                     
                 </aside>
                 
-                <div class="p-4 sm:ml-64">
+                <div class="sm:ml-64">
                     <!------------------Search Bar--------------------------->
-                    <form class="flex items-center">   
+                    <div class = "search-bar-container flex justify-center items-center sticky inset-x-0 top-0 left-0 h-[6em] backdrop-blur-sm" style = "z-index:9998">
+                 
+                    <form class="flex  w-1/2  py-5 pl-5 items-center">  
+                   
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -164,13 +168,15 @@
                             <span class="sr-only">Search</span>
                         </button>
                     </form>
+               </div>
 
 
 
                     <!----------Hidden Div----------->
-                    <div id = "hidden-div" class = "hidden z-40 fixed w-full h-full top-0 left-0 flex items-center justify-center">
-                        
+                    <div id = "hidden-div" style="z-index:9996" class = "hidden z-40 fixed w-full h-full top-0 left-0 flex items-center justify-center">
+                    
                     </div>
+                    <div id = "black-bg" class="fixed w-full hidden h-screen bg-gray-900 opacity-60" style="z-index:9995"></div>
                     <!-----------------Carasoul---------------------------->
                             <div class="p-4 mt-5 h-[30em] rounded-lg z-0">
                                     <div id="favorite-movie">

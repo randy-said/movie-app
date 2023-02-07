@@ -77,12 +77,12 @@
       
                 <div class="flex-col text-gray-300">
          
-                  <p class="pt-4 text-2xl ml-4 font-bold">${movie.title} (${movie.year})</p>
+                  <p class="pt-4 text-2xl ml-4 font-bold">${movie.title}</p>
                   <hr class="hr-text" data-content="">
                   <p class="hidden md:block px-4 my-4 text-sm text-left"> ${movie.actors} </p>
                   
                   <p class="flex text-md px-4 my-2">
-                    Rating: ${movie.rating}/10   
+                    Rating: ${movie.rating} 
                   </p>
                   
                 </div>
@@ -111,7 +111,7 @@
     
               <div class="flex-col text-gray-300">
        
-                <p class="pt-4 text-2xl ml-4 font-bold">${movie.title} (${movie.year})</p>
+                <p class="pt-4 text-2xl ml-4 font-bold">${movie.title}</p>
                 <hr class="hr-text" data-content="">    
                 <p class="hidden md:block px-4 my-4 text-sm text-left">${movie.actors}</p>
                 
@@ -145,7 +145,7 @@
   
             <div class="flex-col text-gray-300">
      
-              <p class="pt-4 text-2xl ml-4 font-bold">${movie.title} (${movie.year})</p>
+              <p class="pt-4 text-2xl ml-4 font-bold">${movie.title}</p>
               <hr class="hr-text" data-content="">
               <p class="hidden md:block px-4 my-4 text-sm text-left">${movie.actors} </p>
               
@@ -331,17 +331,25 @@ $(document).on('click', '.save-btn', async function(e){
    }
  }
 
+
+ $('#search-input').click(function(){
+$('.search-bar-container').addClass('scale-150');
+$('#black-bg').removeClass('hidden');
+ });
+
 //Search button event listeners here
 $('#search-btn').on('click', async function(e){
  e.preventDefault();
  $('#hidden-div').toggleClass('hidden');
+ $('#black-bg').addClass('hidden');
+
  const searchedMovie = $('#search-input').val();
 //  console.log(searchedMovie);
  const foundMovies = await movieDbApi(searchedMovie);
 //  console.log(foundMovies);
 
  let theDate = foundMovies.results[0].release_date.slice(0, 4);
- let actors = foundMovies.results[0].overview.slice(0, 60);
+ let actors = foundMovies.results[0].overview;
  
 let html = '';
 
