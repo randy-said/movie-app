@@ -24,13 +24,6 @@ const getMovies = async () => {
     return await response.json();
 }
 
-// let movieList = getMovies().then(console.log);
-// let movieData = getMovies().then((data) => {
-//     return data;
-// });
-// movieData.then(console.log);
-
-
 
 // And here is a function that will add a new movie:
 const addMovie = async (movie) => {
@@ -85,8 +78,6 @@ const updateMovie = async (movie) => {
         console.error(e);
     }
 }
-
-
 
 // let movieObject = {   
 //     id: '34kjkj34g5k5jgkg13133',
