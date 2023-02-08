@@ -10,6 +10,12 @@
           sidebar.classList.toggle('-translate-x-full');
 });
 
+        $('.close').click(function() {  
+          sidebar.classList.toggle('translate-x-0');
+          sidebar.classList.toggle('-translate-x-full');
+
+        });
+
         //Carosual
         const progressCircle = document.querySelector(".autoplay-progress svg");
         const progressContent = document.querySelector(".autoplay-progress span");
@@ -301,6 +307,8 @@ $(document).on('click', '.save-btn', async function(e){
 //Click on Add Movie button
   $('.open-modal').click(function() {
     $('#pop-up').removeClass('hidden');
+    sidebar.classList.toggle('translate-x-0');
+    sidebar.classList.toggle('-translate-x-full');
   });
 
 //Click On close button
@@ -334,9 +342,22 @@ $(document).on('click', '.save-btn', async function(e){
 
 
  $('#search-input').click(function(){
-$('.search-bar-container').addClass('scale-150');
-$('#black-bg').removeClass('hidden');
- });
+  $('.search-bar-container').addClass('scale-150');
+  $('.search-backdrop').removeClass('hidden');
+});
+
+$('.search-backdrop').click(function(){
+  $('.search-backdrop').addClass('hidden');
+  $('.search-bar-container').removeClass('scale-150');
+});
+
+$(document).click(function(event) {
+  if (!$(event.target).closest('#search-input').length) {
+    $('.search-backdrop').addClass('hidden');
+    $('.search-bar-container').removeClass('scale-150');
+  }
+});
+
 
 //Search button event listeners here
 $('#search-btn').on('click', async function(e){
