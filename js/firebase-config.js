@@ -60,6 +60,7 @@ class FirebaseDatabase {
 
     
 
+
     async fetch(url, options) {
         let response, id;
         // Validate options object
