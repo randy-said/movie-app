@@ -61,6 +61,7 @@ class FirebaseDatabase {
         let response, id;
         // Validate options object
         if (!options || !options.method || !options.headers) {
+            
             throw new Error('The options object must include a `method` and `headers` property.');
         }
         if (options.body && typeof options.body !== 'string') {

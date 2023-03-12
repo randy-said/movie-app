@@ -89,4 +89,6 @@ input::-webkit-inner-spin-button {
     transform: rotate(-90deg);
   }
 
-  
+  .search-bar-container{
+    z-index:9999;
+  }
